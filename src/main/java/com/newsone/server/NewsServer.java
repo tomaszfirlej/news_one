@@ -1,5 +1,6 @@
 package com.newsone.server;
 
+import com.newsone.enums.Category;
 import com.newsone.logic.NewsManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -25,5 +26,10 @@ public class NewsServer {
                                    final @PathVariable("category") String category) {
 
         return newsManager.getForCategoryAndCountry(country, category);
+    }
+
+    @GetMapping(value = "/categories")
+    public Category[] getcategories(){
+        return Category.values();
     }
 }

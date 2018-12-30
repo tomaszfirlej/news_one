@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+    <script src="setup.js" defer></script>
+    <script src="search.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div id="searchArea" title="Szukaj">
+
+    <label for="categoryDropdown">Kategoria:</label><select id="categoryDropdown"></select>
+    <button id="searchButton" onclick="searchNews()">Szukaj</button>
+</div>
+
+<ul id="article-list" class="article-list"></ul>
+
+<template id="mytemplate">
+    <li>
+        <div class="article">
+            <div class="title"></div>
+            <div class="description"><img class="article-image" alt="" src=""></div>
+            <div class="article-info">
+                <div class="author"></div> <span> | </span>
+                <div class="date"></div> <span> | </span>
+                <a class="source-link">źródło</a>
+            </div>
+        </div>
+    </li>
+</template>
+
+</body>
+</html>

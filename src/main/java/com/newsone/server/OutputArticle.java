@@ -18,7 +18,8 @@ public class OutputArticle {
         this.author = inputArticle.getAuthor();
         this.title = inputArticle.getTitle();
         this.description = inputArticle.getDescription();
-        this.date = inputArticle.getPublishedAt();
+        int expectedDateFormatLength = 10;
+        this.date = inputArticle.getPublishedAt().substring(0, expectedDateFormatLength);
         this.sourceName = inputArticle.getSource().getName();
         this.articleUrl = inputArticle.getUrl();
         this.imageUrl = inputArticle.getUrlToImage();
