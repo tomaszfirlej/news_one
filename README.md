@@ -15,8 +15,7 @@ USAGE
 		Simply import the project as maven project in favourite IDE (e.g. IntelliJ) and then run it.
 
 	2. With command line
-		a. call 'mvnw clean install' from projects main directory
-		b. call 'mvnw package && java -jar target/news_one-0.1.0.jar', also from projects main directory.
+		Call 'mvnw package && java -jar target/news_one-0.1.0.jar' from projects main directory.
 		
 	After 'deployment':
 		
