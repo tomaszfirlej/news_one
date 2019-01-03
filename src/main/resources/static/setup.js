@@ -1,6 +1,6 @@
 const categoryDropDownId = "categoryDropdown";
 const categoryDropDown = document.getElementById(categoryDropDownId);
-const hostUrl = "http://localhost:8080";//window.location.host;
+const hostUrl = window.location.origin;
 const categoriesUrl = hostUrl + "/news/categories";
 
 $.get({
