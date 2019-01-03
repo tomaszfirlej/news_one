@@ -2,8 +2,10 @@ package com.newsone.server;
 
 import com.newsone.client.InputArticle;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class OutputArticle {
 
     private String author;

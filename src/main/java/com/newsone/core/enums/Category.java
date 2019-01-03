@@ -1,4 +1,4 @@
-package com.newsone.enums;
+package com.newsone.core.enums;
 
 public enum Category {
     technology,

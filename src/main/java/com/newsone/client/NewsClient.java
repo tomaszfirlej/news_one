@@ -1,6 +1,10 @@
 package com.newsone.client;
 
+import com.AppProperties;
+import com.newsone.core.enums.Category;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -9,12 +13,32 @@ import java.util.List;
 @Component
 public class NewsClient {
 
-    private static final String NEWS_API_KEY = "c1f7a5faf193437ea1319ccac00adc1d";
-    private static final String NEWS_URL = "https://newsapi.org/v2/top-headlines?country=%s&category=%s&apiKey=%s";
+    private final AppProperties appProperties;
+    private final RestTemplate restTemplate;
 
-    public List<InputArticle> getForCountryAndCategory(final String country, final String category) {
-        RestTemplate restTemplate = new RestTemplate();
-        InputArticles inputArticles = restTemplate.getForObject(String.format(NEWS_URL, country, category, NEWS_API_KEY), InputArticles.class);
+    @Autowired
+    public NewsClient(AppProperties appProperties, RestTemplate restTemplate) {
+        this.appProperties = appProperties;
+        this.restTemplate = restTemplate;
+    }
+
+    public List<InputArticle> getNewsForCountryAndCategory(final String country, final Category category) {
+
+        InputArticles inputArticles;
+
+        try {
+            String targetUrl = getTargetUrl(country, category);
+            inputArticles = restTemplate.getForObject(targetUrl, InputArticles.class);
+        } catch (RestClientException e) {
+            // log exception
+            // etc.
+            throw e;
+        }
+
         return inputArticles != null ? inputArticles.getArticles() : Collections.emptyList();
+    }
+
+    private String getTargetUrl(String country, Category category) {
+        return String.format(appProperties.getTargetUrl().concat(appProperties.getTargetSuffixTemplate()), country, category, appProperties.getApiKey());
     }
 }

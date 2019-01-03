@@ -1,9 +1,9 @@
-package com.newsone.logic;
+package com.newsone.core;
 
-import com.newsone.client.NewsClient;
 import com.newsone.client.InputArticle;
+import com.newsone.client.NewsClient;
+import com.newsone.core.enums.Category;
 import com.newsone.server.OutputArticle;
-import com.newsone.server.OutputArticles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +20,9 @@ public class NewsManager {
         this.newsClient = newsClient;
     }
 
-    public OutputArticles getForCategoryAndCountry(final String country, final String category) {
-        List<InputArticle> inputArticles = newsClient.getForCountryAndCategory(country, category);
-        List<OutputArticle> outputArticles = convertArticlesToOutputFormat(inputArticles);
-        return new OutputArticles(country, category, outputArticles);
+    public List<OutputArticle> getForCategoryAndCountry(final String country, final Category category) {
+        List<InputArticle> inputArticles = newsClient.getNewsForCountryAndCategory(country, category);
+        return convertArticlesToOutputFormat(inputArticles);
     }
 
     private List<OutputArticle> convertArticlesToOutputFormat(final List<InputArticle> inputArticles) {
