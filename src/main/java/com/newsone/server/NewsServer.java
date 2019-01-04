@@ -10,7 +10,6 @@ import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
-@Scope("session")
 @RequestMapping("/news")
 @RestController
 public class NewsServer {
